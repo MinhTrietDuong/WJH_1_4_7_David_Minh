@@ -2,9 +2,22 @@ import PIL
 import PIL.ImageDraw
 import os.path
 
-def mergeImages():
+def changeImages(directory=None):
+    if directory == None:
+        directory = os.getcwd()
+    new_directory = os.path.join(directory, 'modified')
+    try:
+        os.mkdir(new_directory)
+    except OSError:
+        pass
+    imageList, fileList = getImages(directory)
+    fileName, fileType = os.path.splitext(fileList)
+    newImage = FinalImage(imageList)
+    newImage_fileName = os.path.join(new_directory, fileName + '.png')
+    newImage.save(newImage_fileName)
     
-#def changeFinalImage():
+def FinalImage(images):
+    return images
     
 def getImages(directory=None):
     """ Returns PIL.Image objects for all the images in directory.
